@@ -1,4 +1,7 @@
-# NCloud User Open API
+spring:
+  application:
+    name: nce-cert
+    version: 0.0.1
 ncp:
   api:
     accessKey: rp08euZ0GBkAMbxdkFmq
