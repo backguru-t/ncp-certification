@@ -14,9 +14,12 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
 
 public class BaseNcpService {
-    protected String accessKey = "rp08euZ0GBkAMbxdkFmq";
-    protected String secretKey = "WilmZ071vjAX9Ryy0iRD8COoswaQwsVpp3v5F5e9";
-    protected RestTemplate restTemplate = new RestTemplate();
+    @Value("${ncp.api.accessKey}")
+    protected String accessKey;
+    @Value("${ncp.api.secretKey}")
+    protected String secretKey;
+    @Value("${ncp.api.host}")
+    protected String certApiHost;
     protected HttpHeaders getNcloudApiHeader(HttpMethod method, String url) {
         try {
             MediaType mediaType = new MediaType("application", "json", Charset.forName("UTF-8"));

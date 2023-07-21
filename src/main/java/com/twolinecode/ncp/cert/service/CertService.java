@@ -10,13 +10,14 @@ import com.twolinecode.ncp.cert.utils.OpenApiUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
 @Service
 public class CertService extends BaseNcpService {
-    private final String certApiHost = "https://certificatemanager.apigw.ntruss.com";
+    private RestTemplate restTemplate = new RestTemplate();
     public GetCertificateListRespDto getCertificateList() {
         final String uri = OpenApiUtils.getOpenApiUrl(NcloudApiUrls.GET_CERTIFICATE_LIST);
         ResponseEntity<GetCertificateListRespDto> response = restTemplate.exchange(certApiHost + uri,

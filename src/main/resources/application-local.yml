@@ -1,9 +1,6 @@
 # NCloud User Open API
-ncloud.api.access.key=rp08euZ0GBkAMbxdkFmq
-ncloud.api.secret.key=WilmZ071vjAX9Ryy0iRD8COoswaQwsVpp3v5F5e9
-ncloud.apigateway.api.keys.primary=xPE4rB4AQfzteUkyUJg9rSKaR92dCLeErtVrdIfm
-ncloud.apigateway.api.keys.secondary=sA8aSkPV2x499LP95NAUhOTBneaPRsAk4i6WDoP6
-ncloud.api.cert.manager.host=https://certificatemanager.apigw.ntruss.com
-server.max-http-header-size=20MB
-server.tomcat.max-swallow-size=20MB //maximum size of the request body/payload
-server.tomcat.max-http-post-size=20MB //maximum size of entire POST request
+ncp:
+  api:
+    accessKey: rp08euZ0GBkAMbxdkFmq
+    secretKey: WilmZ071vjAX9Ryy0iRD8COoswaQwsVpp3v5F5e9
+    host: https://certificatemanager.apigw.ntruss.com
