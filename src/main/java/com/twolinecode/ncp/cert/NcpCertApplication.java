@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class NcpCertApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(NcpCertApplication.class, args);
 	}

@@ -6,8 +6,7 @@ import com.twolinecode.ncp.cert.dto.req.RegisterExternalCertificateReqDto;
 import com.twolinecode.ncp.cert.dto.res.DeleteCertificateRespDto;
 import com.twolinecode.ncp.cert.dto.res.GetCertificateListRespDto;
 import com.twolinecode.ncp.cert.dto.res.RegisterExternalCertificateRespDto;
-import com.twolinecode.ncp.cert.utils.OpenApiUtils;
-import lombok.extern.slf4j.Slf4j;
+import com.twolinecode.ncp.cert.utils.NcloudApiUtil;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,10 +15,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Service
-public class CertService extends BaseNcpService {
+public class CertService extends BaseService {
     private RestTemplate restTemplate = new RestTemplate();
     public GetCertificateListRespDto getCertificateList() {
-        final String uri = OpenApiUtils.getOpenApiUrl(NcloudApiUrls.GET_CERTIFICATE_LIST);
+        final String uri = NcloudApiUtil.getApiUrl(NcloudApiUrls.GET_CERTIFICATE_LIST);
         ResponseEntity<GetCertificateListRespDto> response = restTemplate.exchange(certApiHost + uri,
                                     HttpMethod.GET, new HttpEntity(getNcloudApiHeader(HttpMethod.GET, uri)),
                                     GetCertificateListRespDto.class);
@@ -28,7 +27,7 @@ public class CertService extends BaseNcpService {
 
     public RegisterExternalCertificateRespDto registerExternalCertificate(final RegisterExternalCertificateReqDto reqDto) {
         URI uri = UriComponentsBuilder.fromHttpUrl(certApiHost + NcloudApiUrls.REGISTER_EXTERNAL_CERTIFICATE).build().toUri();
-        HttpHeaders header = getNcloudApiHeader(HttpMethod.POST, OpenApiUtils.getOpenApiUrl(NcloudApiUrls.REGISTER_EXTERNAL_CERTIFICATE));
+        HttpHeaders header = getNcloudApiHeader(HttpMethod.POST, NcloudApiUtil.getApiUrl(NcloudApiUrls.REGISTER_EXTERNAL_CERTIFICATE));
         RequestEntity<RegisterExternalCertificateReqDto> requestEntity = new RequestEntity(reqDto, header, HttpMethod.POST, uri);
 
         ResponseEntity<RegisterExternalCertificateRespDto> response = restTemplate.exchange(requestEntity, RegisterExternalCertificateRespDto.class);
@@ -36,7 +35,7 @@ public class CertService extends BaseNcpService {
     }
 
     public DeleteCertificateRespDto deleteCertificate(final String pathVar, final DeleteCertificateReqDto reqDto) {
-        final String uri = OpenApiUtils.getOpenApiUrl(NcloudApiUrls.DELETE_CERTIFICATE, pathVar, reqDto);
+        final String uri = NcloudApiUtil.getApiUrl(NcloudApiUrls.DELETE_CERTIFICATE, pathVar, reqDto);
         ResponseEntity<DeleteCertificateRespDto> response = restTemplate.exchange(certApiHost + uri,
                                     HttpMethod.DELETE, new HttpEntity(getNcloudApiHeader(HttpMethod.DELETE, uri)),
                                     DeleteCertificateRespDto.class);

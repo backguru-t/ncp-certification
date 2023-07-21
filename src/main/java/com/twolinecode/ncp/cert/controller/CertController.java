@@ -29,17 +29,19 @@ public class CertController {
     }
 
     @DeleteMapping("/delete/{certificateNo}/{certificateName}")
-    public DeleteCertificateRespDto deleteCertificate(@PathVariable("certificateNo") String certificateNo, @PathVariable("certificateName") String certificateName) {
+    public DeleteCertificateRespDto deleteCertificate(@PathVariable("certificateNo") String certificateNo,
+                                                      @PathVariable("certificateName") String certificateName) {
         final DeleteCertificateReqDto reqDto = DeleteCertificateReqDto.builder().certificateName(certificateName).build();
         DeleteCertificateRespDto deleteCertificateRespDto = certService.deleteCertificate(certificateNo, reqDto);
         return deleteCertificateRespDto;
     }
     @PostMapping("/create/{certificateName}")
     public RegisterExternalCertificateRespDto registerExternalCertificate (@PathVariable String certificateName) throws Exception {
-        final RegisterExternalCertificateReqDto reqDto = RegisterExternalCertificateReqDto.builder().certificateName(certificateName)
-                .privateKey(getKeys("D:/work/ncloud/backguru.info/privkey1.pem"))
-                .publicKeyCertificate(getKeys("D:/work/ncloud/backguru.info/cert1.pem"))
-                .certificateChain(getKeys("D:/work/ncloud/backguru.info/chain.pem")).build();
+        final RegisterExternalCertificateReqDto reqDto = RegisterExternalCertificateReqDto.builder()
+                                .certificateName(certificateName)
+                                .privateKey(getKeys("D:/work/ncloud/backguru.info/privkey1.pem"))
+                                .publicKeyCertificate(getKeys("D:/work/ncloud/backguru.info/cert1.pem"))
+                                .certificateChain(getKeys("D:/work/ncloud/backguru.info/chain.pem")).build();
 
         return certService.registerExternalCertificate(reqDto);
     }

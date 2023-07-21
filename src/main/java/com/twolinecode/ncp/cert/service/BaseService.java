@@ -2,18 +2,16 @@ package com.twolinecode.ncp.cert.service;
 
 import com.twolinecode.ncp.cert.constant.NcloudApiHeader;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
 
-public class BaseNcpService {
+public class BaseService {
     @Value("${ncp.api.accessKey}")
     protected String accessKey;
     @Value("${ncp.api.secretKey}")
