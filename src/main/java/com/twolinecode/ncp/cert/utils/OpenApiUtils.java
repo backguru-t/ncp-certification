@@ -41,42 +41,4 @@ public class OpenApiUtils {
 
         return uriBuilder.buildAndExpand(pathVar).toUriString();
     }
-
-
-//    public static MultiValueMap<String, String> convert(ObjectMapper objectMapper, Object dto) {
-//        try {
-//            MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-//            Map<String, String> map = objectMapper.convertValue(dto, new TypeReference<Map<String, String>>() {});
-//            params.setAll(map);
-//
-//            return params;
-//        } catch (Exception e) {
-//            throw new IllegalStateException("Url Parameter converting error happened");
-//        }
-//    }
-
-
-
-//    private static UriComponentsBuilder uriAndParamMerge(UriComponentsBuilder uriBuilder, String keyPrefix, final Object getParameters) {
-//        final Map<String, Object> map = ApplicationContextUtils.getObjectMapper().convertValue(getParameters, new TypeReference<Map>() {
-//        });
-//        for (final Map.Entry<String, Object> entry : map.entrySet()) {
-//            final Object value = entry.getValue();
-//            if (value instanceof List) {
-//                final List<Map> list = ApplicationContextUtils.getObjectMapper().convertValue(value, new TypeReference<List>() {
-//                });
-//
-//                for (int i=0; i < list.size(); i++) {
-//                    if (list.get(i) instanceof Map) {
-//                        uriBuilder = uriAndParamMerge(uriBuilder, keyPrefix + entry.getKey() + "." + (i+1) + ".", list.get(i));
-//                    } else {
-//                        uriBuilder = uriBuilder.replaceQueryParam(keyPrefix + entry.getKey() + "." + (i+1), list.get(i));
-//                    }
-//                }
-//            } else {
-//                uriBuilder = uriBuilder.replaceQueryParam(keyPrefix + entry.getKey(), value);
-//            }
-//        }
-//        return uriBuilder;
-//    }
 }
