@@ -1,5 +1,6 @@
 package com.twolinecode.ncp.cert.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.twolinecode.ncp.cert.dto.req.DeleteCertificateReqDto;
 import com.twolinecode.ncp.cert.dto.req.RegisterExternalCertificateReqDto;
 import com.twolinecode.ncp.cert.dto.res.DeleteCertificateRespDto;
@@ -46,9 +47,14 @@ public class CertController {
         return certService.registerExternalCertificate(reqDto);
     }
 
-    private String getKeys (final String pathStr) throws Exception {
-        String key = new String(Files.readAllBytes(Paths.get(pathStr)), Charset.defaultCharset());
-        key = key.replaceAll("(\r|\n|\r\n|\n\r)","");
+    private String getKeys (final String pathStr) {
+        String key = null;
+        try {
+            key = new String(Files.readAllBytes(Paths.get(pathStr)), Charset.defaultCharset());
+            key = key.replaceAll("(\r|\n|\r\n|\n\r)", "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return key;
     }
 }
